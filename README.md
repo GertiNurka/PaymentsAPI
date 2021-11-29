@@ -29,6 +29,7 @@ This repo is exposing three endpoints. swagger was used for display and test por
 - DDD
 - TDD (with xUnit)
 - CQRS (MediatR was used to impliment it)
+- UnitOfWork
 
 ## Libraries that were used
 - MediatR
