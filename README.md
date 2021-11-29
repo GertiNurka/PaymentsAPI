@@ -35,4 +35,5 @@ This repo is exposing three endpoints. swagger was used for display and test por
 - MediatR
 - AutoMapper
 - FluentValidation
+- xUnit
 - Moq
