@@ -6,12 +6,10 @@ This repo is exposing three endpoints. swagger was used for display and test por
 ```
 {
   "amount": 0,
-  "card": {
-    "name": "string",
-    "cardNumber": "string",
-    "expiryDate": "string",
-    "cvv": "string"
-  },
+  "name": "string",
+  "cardNumber": "string",
+  "expiryDate": "string",
+  "cvv": "string",
   "billingAddress": {
     "line1": "string",
     "line2": "string",
