@@ -8,17 +8,22 @@ namespace PaymentsAPI.Application.CQRS.Commands
     public class CreatePaymentCommand : IRequest<ObjectResult>
     {
         public decimal Amount { get; set; }
-
-        public CardDto Card { get; set; }
+        public string Name { get; set; }
+        public string CardNumber { get; set; }
+        public string ExpiryDate { get; set; }
+        public string Cvv { get; set; }
 
         public BillingAddressDto BillingAddress { get; set; }
 
         public CreatePaymentCommand() { }
 
-        public CreatePaymentCommand(decimal amount, CardDto card, BillingAddressDto billingAddress) : this()
+        public CreatePaymentCommand(decimal amount, string name, string cardNumber, string expiryDate, string cvv,  BillingAddressDto billingAddress) : this()
         {
             Amount = amount;
-            Card = card;
+            Name = name;
+            CardNumber = cardNumber;
+            ExpiryDate = expiryDate;
+            Cvv = cvv;
             BillingAddress = billingAddress;
         }
 
@@ -28,19 +33,6 @@ namespace PaymentsAPI.Application.CQRS.Commands
             {
                 RuleFor(x => x.Amount)
                     .GreaterThan(0);
-                RuleFor(x => x.Card)
-                    .NotNull()
-                    .SetValidator(new CardDtoValidator());
-                RuleFor(x => x.BillingAddress)
-                    .NotNull()
-                    .SetValidator(new BillingAddressDtoValidator());
-            }
-        }
-
-        public class CardDtoValidator : AbstractValidator<CardDto>
-        {
-            public CardDtoValidator()
-            {
                 RuleFor(x => x.Name)
                     .NotEmpty()
                     .NotNull()
@@ -60,9 +52,12 @@ namespace PaymentsAPI.Application.CQRS.Commands
                     .NotNull()
                     .MaximumLength(3)
                     .MinimumLength(3);
-
+                RuleFor(x => x.BillingAddress)
+                    .NotNull()
+                    .SetValidator(new BillingAddressDtoValidator());
             }
         }
+
 
         public class BillingAddressDtoValidator : AbstractValidator<BillingAddressDto>
         {

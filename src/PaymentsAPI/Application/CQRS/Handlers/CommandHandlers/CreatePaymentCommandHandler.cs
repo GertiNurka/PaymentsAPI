@@ -25,7 +25,7 @@ namespace PaymentsAPI.Application.CQRS.Handlers.CommandHandlers
 
         public async Task<ObjectResult> Handle(CreatePaymentCommand command, CancellationToken cancellationToken)
         {
-            var card = _mapper.Map<Card>(command.Card);
+            var card = new Card(command.Name, command.CardNumber, command.ExpiryDate, command.Cvv);
             var billingAddress = _mapper.Map<BillingAddress>(command.BillingAddress);
 
             var payment = new Payment(command.Amount, card, billingAddress);
